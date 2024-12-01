@@ -46,8 +46,23 @@ fun BottomNavigationDemo() {
                         NavigationBarItem(
                             selected = selectedTabIndex == index,
                             onClick = { selectedTabIndex = index },
-                            icon = { Icon(painter = painterResource(id = tab.icon), contentDescription = tab.title) },
-                            label = { Text(tab.title) }
+                            icon = { Icon(
+                                painter = painterResource(id = tab.icon),
+                                contentDescription = tab.title,
+                                tint = if (selectedTabIndex == index) Color(0xFFFFC102) else Color.Gray
+                            )},
+                            label = { Text(
+                                tab.title,
+                                color = if (selectedTabIndex == index) Color(0xFFFFC102) else Color.Gray // Change text color
+                                ) },
+                            alwaysShowLabel = true,
+                            colors = NavigationBarItemDefaults.colors( // Override background effect
+                                selectedIconColor = Color(0xFFFFC102),
+                                unselectedIconColor = Color.Gray,
+                                selectedTextColor = Color(0xFFFFC102),
+                                unselectedTextColor = Color.Gray,
+                                indicatorColor = Color.Transparent // Remove the default background indicator
+                            )
                         )
                     }
                 }
